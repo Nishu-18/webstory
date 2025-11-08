@@ -1,48 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import { uploadToCloudinary } from "./utils/uploadToCloudinary";
+import { Routes, Route, Navigate } from "react-router-dom";
+import Navbar from "./components/Navbar.jsx";
+import Dashboard from "./pages/Dashboard.jsx";
+import AddStory from "./pages/AddStory.jsx";
+import EditStory from "./pages/EditStory.jsx";
+import Categories from "./pages/Categories.jsx";
+import Player from "./pages/Player.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
-   const [uploading, setUploading] = useState(false);
-    const [url, setUrl] = useState("");
-    async function handleFile(e) {
-    const file = e.target.files[0];
-    if (!file) return;
-    setUploading(true);
-    try {
-      const result = await uploadToCloudinary(file);
-      console.log(result);
-      setUrl(result.url);
-    } catch (err) {
-      console.error(err);
-      alert(err.message);
-    } finally {
-      setUploading(false);
-    }
-  }
-
-
+export default function App() {
   return (
-    <>
-      <div className="p-6">
-      <input type="file" onChange={handleFile} accept="image/*,video/*" />
-      {uploading && <p>Uploading...</p>}
-      {url && (
-        <div>
-          <p>Uploaded!</p>
-          {url.includes(".mp4") ? (
-            <video src={url} controls width="300" />
-          ) : (
-            <img src={url} alt="preview" width="300" />
-          )}
-        </div>
-      )}
+    <div className="min-h-screen bg-gray-50 text-gray-900">
+      <Navbar />
+      <div className="max-w-5xl mx-auto p-4">
+        <Routes>
+          <Route path="/" element={<Categories />} />
+          <Route path="/story/:id" element={<Player />} />
+          <Route path="/admin" element={<Dashboard />} />
+          <Route path="/admin/add" element={<AddStory />} />
+          <Route path="/admin/edit/:id" element={<EditStory />} />
+          <Route path="*" element={<Navigate to="/" />} />
+        </Routes>
+      </div>
     </div>
-    </>
-  )
+  );
 }
-
-export default App
