@@ -7,6 +7,7 @@ export default function Dashboard() {
   const [stories, setStories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const token=localStorage.getItem("token");
 
   const loadStories = async () => {
     try {
@@ -29,6 +30,7 @@ export default function Dashboard() {
     try {
       await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/stories/${id}`, {
         method: "DELETE",
+        headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
       });
       setStories((prev) => prev.filter((s) => s._id !== id));
     } catch (err) {
