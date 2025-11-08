@@ -13,6 +13,7 @@ export default function EditStory() {
   const [slides, setSlides] = useState([]);
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
+  const token=localStorage.getItem("token");
 
   // ✅ Fetch existing story
   useEffect(() => {
@@ -71,7 +72,7 @@ export default function EditStory() {
         `${import.meta.env.VITE_BACKEND_URL}/api/stories/${id}`,
         {
           method: "PUT",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", "Authorization": `Bearer ${token}` },
           body: JSON.stringify(updatedStory),
         }
       );
@@ -87,7 +88,7 @@ export default function EditStory() {
   if (loading) return <p className="text-gray-600">Loading story...</p>;
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto mt-15">
       <h1 className="text-2xl font-semibold mb-6">✏️ Edit Story</h1>
 
       <form
