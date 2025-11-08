@@ -5,8 +5,14 @@ import AddStory from "./pages/AddStory.jsx";
 import EditStory from "./pages/EditStory.jsx";
 import Categories from "./pages/Categories.jsx";
 import Player from "./pages/Player.jsx";
+import Login from "./pages/Login.jsx";
 
 export default function App() {
+
+  function PrivateRoute({ children }) {
+  const token = localStorage.getItem("token");
+  return token ? children : <Navigate to="/login" replace />;
+}
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
       <Navbar />
@@ -14,10 +20,12 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Categories />} />
           <Route path="/story/:id" element={<Player />} />
-          <Route path="/admin" element={<Dashboard />} />
-          <Route path="/admin/add" element={<AddStory />} />
-          <Route path="/admin/edit/:id" element={<EditStory />} />
+          <Route path="/admin" element={<PrivateRoute><Dashboard /></PrivateRoute>} />
+          <Route path="/admin/add" element={<PrivateRoute><AddStory/></PrivateRoute>}/>
+          <Route path="/admin/edit/:id" element={<PrivateRoute><EditStory /></PrivateRoute>} />
+          <Route path="/login" element={<Login/>}/>
           <Route path="*" element={<Navigate to="/" />} />
+        
         </Routes>
       </div>
     </div>

@@ -4,6 +4,8 @@ import dotenv from "dotenv";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import storyRoutes from "./routes/storyRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
+import { verifyToken } from "./middleware/authMiddleware.js";
 
 dotenv.config();
 
@@ -13,11 +15,15 @@ const PORT = process.env.PORT || 5000;
 connectDB();
 
 app.use(cors());
+
 app.use(express.json({ limit: "10mb" })); // allow JSON bodies
 
 app.get("/", (req, res) => res.send("WebStories API is running"));
 
 app.use("/api/stories", storyRoutes);
+
+
+app.use("/api/auth", authRoutes);
 
 app.use((err, req, res, next) => {
   console.error(err.stack);

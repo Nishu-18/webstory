@@ -40,7 +40,7 @@ export default function Dashboard() {
   if (error) return <p className="text-red-600">{error}</p>;
 
   return (
-    <div>
+    <div className="mt-15">
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-2xl font-semibold">📋 CMS Dashboard</h1>
         <Link
@@ -64,31 +64,34 @@ export default function Dashboard() {
                 <th className="py-2 px-3 text-center">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              {stories.map((story) => (
-                <tr key={story._id} className="border-t hover:bg-gray-50">
-                  <td className="py-2 px-3">{story.title}</td>
-                  <td className="py-2 px-3">{story.category}</td>
-                  <td className="py-2 px-3">
-                    {new Date(story.createdAt).toLocaleDateString()}
-                  </td>
-                  <td className="py-2 px-3 text-center space-x-2">
-                    <Link
-                      to={`/admin/edit/${story._id}`}
-                      className="px-3 py-1 bg-yellow-500 text-white rounded hover:bg-yellow-600"
-                    >
-                      Edit
-                    </Link>
-                    <button
-                      onClick={() => handleDelete(story._id)}
-                      className="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700"
-                    >
-                      Delete
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
+           <tbody>
+  {stories.map((story) => (
+    <tr
+      key={story._id}
+      className="border-t hover:bg-gray-50 transition-colors"
+    >
+      <td className="py-3 px-3 font-medium text-gray-800">{story.title}</td>
+      <td className="py-3 px-3 text-gray-600">{story.category}</td>
+      <td className="py-3 px-3 text-gray-500 text-sm">
+        {new Date(story.createdAt).toLocaleDateString()}
+      </td>
+      <td className="py-3 px-3 text-center space-x-2 flex flex-wrap justify-center md:table-cell">
+        <Link
+          to={`/admin/edit/${story._id}`}
+          className="px-3 py-1.5 bg-yellow-500 text-white rounded-md hover:bg-yellow-600 transition"
+        >
+          ✏️ Edit
+        </Link>
+        <button
+          onClick={() => handleDelete(story._id)}
+          className="px-3 py-1.5 bg-red-600 text-white rounded-md hover:bg-red-700 transition"
+        >
+          🗑️ Delete
+        </button>
+      </td>
+    </tr>
+  ))}
+</tbody>
           </table>
         </div>
       )}

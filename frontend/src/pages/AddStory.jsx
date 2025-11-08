@@ -61,7 +61,7 @@ export default function AddStory() {
   };
 
   return (
-    <div className="max-w-3xl mx-auto">
+    <div className="max-w-3xl mx-auto mt-15">
       <h1 className="text-2xl font-semibold mb-6">➕ Add Story</h1>
 
       <form

@@ -7,13 +7,14 @@ import {
   updateStory,
   deleteStory
 } from "../controllers/storyController.js";
+import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
 
 router.get("/", getStories);
 router.get("/:id", getStoryById);
-router.post("/", createStory);
-router.put("/:id", updateStory);
-router.delete("/:id", deleteStory);
+router.post("/",verifyToken, createStory);
+router.put("/:id",verifyToken, updateStory);
+router.delete("/:id",verifyToken, deleteStory);
 
 export default router;
