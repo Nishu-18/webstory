@@ -85,7 +85,7 @@ export default function Categories() {
                   ) : story.slides[0] ? (
                     <video
                       src={story.slides[0].url}
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       muted
                     />
                   ) : (
