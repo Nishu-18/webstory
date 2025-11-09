@@ -44,7 +44,7 @@ export default function Categories() {
   });
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
+    <div className="max-w-6xl mx-auto px-4 py-20">
       {/* Page Header */}
       <div className="flex items-center gap-2 mb-8">
         <BookOpen className="text-blue-600" size={28} />
