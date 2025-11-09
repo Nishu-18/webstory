@@ -17,5 +17,8 @@ export const createStory = async (data) => {
     headers: { "Content-Type": "application/json" ,"Authorization": `Bearer ${token}` },
     body: JSON.stringify(data),
   });
+  console.log("token in frontend ",token);
+  
   return res.json();
+
 };

@@ -89,9 +89,9 @@ export default function Player() {
       {/* Back button */}
       <button
         onClick={() => navigate("/")}
-        className="absolute top-12 left-3 bg-white text-black px-3 py-1 rounded text-sm"
+        className="absolute font-bold-sm top-12 left-3 bg-white text-black px-3 py-1 rounded text-sm cursor-pointer"
       >
-        ← Back
+        Back
       </button>
 
       {/* Main slide */}
