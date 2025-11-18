@@ -6,6 +6,7 @@ import EditStory from "./pages/EditStory.jsx";
 import Categories from "./pages/Categories.jsx";
 import Player from "./pages/Player.jsx";
 import Login from "./pages/Login.jsx";
+import ChatWidget from "./components/ChatWidget.jsx";
 
 export default function App() {
 
@@ -27,6 +28,7 @@ export default function App() {
           <Route path="*" element={<Navigate to="/" />} />
         
         </Routes>
+        <ChatWidget/>
       </div>
     </div>
   );

@@ -6,6 +6,8 @@ import connectDB from "./config/db.js";
 import storyRoutes from "./routes/storyRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import { verifyToken } from "./middleware/authMiddleware.js";
+import chatRoutes from "./routes/chatRoutes.js";
+import aiRoutes from "./routes/aiRoutes.js";
 
 dotenv.config();
 
@@ -17,6 +19,8 @@ connectDB();
 app.use(cors());
 
 app.use(express.json({ limit: "10mb" })); // allow JSON bodies
+app.use("/api/chat",chatRoutes);
+app.use("/api/ai",aiRoutes)
 
 app.get("/", (req, res) => res.send("WebStories API is running"));
 
